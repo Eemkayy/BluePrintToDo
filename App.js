@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
+import sound from "./imsorry/taco.mp3"
 // Importing Components
 import Form from "./components/Form"
 import TodoList from "./components/TodoList"
 function App() {
+
+  const [value, setValue] = useState(0)
+
+  useEffect(()=>{
+    if (value % 3 ==0){
+      play()
+    }
+  }, [value])
+
+  function play(){
+    new Audio(sound).play()
+  }
 
   // State
   const [inputText, setInputText] = useState(""); // hooks
@@ -73,8 +86,15 @@ function App() {
         setTodos={setTodos}
         filteredTodos={filteredTodos}
       />
+      <div className = "App">
+      <button onClick={()=>setValue(value+1)}>
+        Make some noise
+      </button>
+    </div>
     </div>
   );
+
+
 }
 
 export default App;
