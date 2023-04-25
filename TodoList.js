@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
 const TodoList = ({todos, setTodos, filteredTodos}) => {
-    // console.log(todos);
+    //We set up the list and export it onto the main website, default should be empty, else we apply the saved settings.
     return(
         
         <div className="todo-container">

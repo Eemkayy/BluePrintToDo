@@ -12,50 +12,50 @@ function App() {
   const [filteredTodos, setFilteredTodos] = useState([]);
   // Run once when the app start
    useEffect(() =>{
+    //we obtain the local data
      getLocalTodos();
    },[]);
   // Use effect
   useEffect(() => {
     const filterHandler = () => {
       switch (status) {
+        //In the case that the button clicked is the "Tick" mark
         case 'completed':
           setFilteredTodos(todos.filter(todo => todo.completed === true))
           break;
+        //In the case that the button clicked is the "Untick" mark (task is not complete)
         case 'uncompleted':
           setFilteredTodos(todos.filter(todo => todo.completed === false))
           break;
         default:
+          //In the default case, we just list set all the filteredTodos in todos
           setFilteredTodos(todos);
           break;
       }
     }
     filterHandler();
+    //save all the data so that no inputted/deleted/completed item is not updated status-wise
     saveLocalTodos();
   }, [todos, status]);
 
-  // Save to local
-  // const saveLocalTodos = () => {
-  //   if (localStorage.getItem('todos') === null) {
-  //     localStorage.setItem('todos', JSON.stringify([]));
-  //   } else {
-  //     localStorage.setItem('todos', JSON.stringify(todos));
-  //   }
-  // }
+    //saves the todo items
     const saveLocalTodos = () => { 
     localStorage.setItem('todos', JSON.stringify(todos));
 }
 
+
+  //Returns the todo items
   const getLocalTodos = () => {
     if (localStorage.getItem('todos') === null) {
+      //if obtaining the todos does not exist/is null
       localStorage.setItem('todos', JSON.stringify([]));
     } else {
       let todoLocal = JSON.parse(localStorage.getItem('todos'));
-      // JSON.parse(localStorage.getItem('todos'));
-    // console.log(todoLocal);
     setTodos(todoLocal);
     }
   }
   return (
+    //Returns our program onto the localhost website, called "ToDo List" under classname "App"
     <div className="App">
       <header>
         <h1>ToDo List </h1>
