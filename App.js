@@ -3,6 +3,7 @@ import './App.css';
 // Importing Components
 import Form from "./components/Form"
 import TodoList from "./components/TodoList"
+import sound from "./imsorry/taco.mp3"
 function App() {
 
   // State
@@ -12,6 +13,12 @@ function App() {
   const [filteredTodos, setFilteredTodos] = useState([]);
   // Run once when the app start
    useEffect(() =>{
+  let audio = new Audio("/taco.mp3")
+
+  const start = () => {
+    
+    audio.play()
+      }
     //we obtain the local data
      getLocalTodos();
    },[]);
@@ -72,6 +79,8 @@ function App() {
         todos={todos}
         setTodos={setTodos}
         filteredTodos={filteredTodos}
+      <button onClick={start}>Play</button>
+
       />
     </div>
   );
