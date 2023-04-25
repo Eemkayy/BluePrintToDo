@@ -3,11 +3,13 @@ import React from 'react';
 const From = ({todos, setTodos, inputText, setInputText, setStatus}) => {
     // Input changes and call this function
     const inputTextHandler = (e) => {
-        // console.log(e.target.value);
+        //we get the value of the input text (whatever is written)
         setInputText(e.target.value);
     }
     const submitTodoHandler = (e) => {
-        e.preventDefault();
+        e.preventDefault(); //prevents from refreshing
+
+        //when something is added onto the textfield, the state is updated, once + is clicked, new item is added.
         setTodos([
             ...todos, 
             {text: inputText, 
@@ -21,6 +23,7 @@ const From = ({todos, setTodos, inputText, setInputText, setStatus}) => {
         setStatus(e.target.value);
     }
     return (
+        //"Physical form" of the Form is being displayed on the screen, which is essentially the text input that the user is writing on
         <form>
             <input value={inputText} onChange={inputTextHandler} type="text" className="todo-input"></input>
             <button onClick={submitTodoHandler} className="todo-button">
